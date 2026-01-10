@@ -82,6 +82,6 @@
    
    -Voici quelques captures de l'application :
    ![Page d'accueil](public/images/img1.jpeg)
-   ![Météo d'aujourd'hui](public/images/img1.jpeg)
-   ![Informations complémentaires sur la ville](public/images/img1.jpeg)
-   ![Prévisions météo](public/images/img1.jpeg)
+   ![Météo d'aujourd'hui](public/images/img2.jpeg)
+   ![Informations complémentaires sur la ville](public/images/img3.jpeg)
+   ![Prévisions météo](public/images/img4.jpeg)
