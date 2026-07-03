@@ -16,7 +16,7 @@ export default function Forecast({ info, ville,Q }) {
 
   return (
     <div className="forecast-container">
-      <button className="changer-ville" onClick={back}>
+      <button className="changer-ville" onClick={back} style={{marginBottom:'10px'}}>
         Changer la ville 🌤
       </button>
 
