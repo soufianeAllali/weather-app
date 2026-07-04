@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { HashRouter as Router, Routes, Route } from "react-router-dom";
 import Form from "./Form";
 import Weather from "./Weather";
 import WeatherMap from "./WeatherMap";
