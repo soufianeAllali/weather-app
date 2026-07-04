@@ -8,7 +8,7 @@ export default function CityInfo() {
   const [images, setImages] = useState([]);
   const [infowikidata, setInfowikidata] = useState(null);
   const [err, setErr] = useState("");
-  const {info, ville, Q } = useParams();
+  const { ville, Q } = useParams();
   const navigate = useNavigate();
 
   useEffect(() => {

@@ -1,5 +1,3 @@
-import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
 import "./Style.css";
 import { useNavigate } from "react-router-dom";
 import AIWeatherTips from "./AIWeather";

@@ -15,7 +15,7 @@ export default function Form({ err = "" }) {
     if (localStorage.getItem("ville")) {
       navigate(`/weather/${localStorage.getItem("ville")}`);
     }
-  }, []);
+  }, [navigate]);
 
   useEffect(() => {
     const click = () => setErr("");

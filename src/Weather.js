@@ -1,10 +1,9 @@
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import Meteo_aujourdhui from "./Meteo_aujourd'hui";
+import MeteoAujourdhui from "./Meteo_aujourd'hui";
 import Forecast from "./Forecast";
 import Form from "./Form";
-import {useNavigate} from 'react-router-dom';
 import "./Style.css";
 
 export default function Weather({ env }) {
@@ -15,7 +14,6 @@ export default function Weather({ env }) {
   const [err, setErr] = useState("");
   const [loading, setLoading] = useState(false);
   const [Qville, setQville] = useState(null);
-  const navigate = useNavigate()
 
   useEffect(() => {
     setInfo(null);
@@ -56,7 +54,7 @@ export default function Weather({ env }) {
         localStorage.removeItem("ville");
         if (!e.response) {
           setErr("Erreur reseau ou probleme de connexion ⚠");
-        } else if (e.response.status == 404) {
+        } else if (e.response.status === 404) {
           setErr("Ville introuvable ⚠");
         } else {
           setErr("Probleme API");
@@ -78,7 +76,7 @@ export default function Weather({ env }) {
         localStorage.removeItem("ville");
         if (!e.response) {
           setErr("Erreur reseau ou probleme de connexion ⚠");
-        } else if (e.response.status == 404) {
+        } else if (e.response.status === 404) {
           setErr("Ville introuvable ⚠");
         } else {
           setErr("Probleme API");
@@ -100,8 +98,8 @@ export default function Weather({ env }) {
   if (env === "weather") {
     return (
       <>
-        {(lat && info) && <Meteo_aujourdhui info={info} ville="" Q="" w={info.weather[0].main.toLowerCase()}/>}
-        {(ville && info) && <Meteo_aujourdhui info={info} ville={ville} Q={Qville} w={info.weather[0].main.toLowerCase()}/>}
+        {(lat && info) && <MeteoAujourdhui info={info} ville="" Q="" w={info.weather[0].main.toLowerCase()}/>}
+        {(ville && info) && <MeteoAujourdhui info={info} ville={ville} Q={Qville} w={info.weather[0].main.toLowerCase()}/>}
         {err &&  <Form err={err} />}
       </>
     );

@@ -1,6 +1,5 @@
 import "./Style.css";
 import { useNavigate } from "react-router-dom";
-import CityInfo from "./CityInfo";
 
 export default function Forecast({ info, ville,Q }) {
   const navigate = useNavigate();
