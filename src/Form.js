@@ -1,7 +1,6 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Style.css";
-import { useEffect } from "react";
 
 
 export default function Form({ err = "" }) {
@@ -29,7 +28,7 @@ export default function Form({ err = "" }) {
     e.preventDefault();
     if (navigator.onLine) {
       if (!ville.trim()) {
-        setCheck("Ville⁉");
+        setCheck("Ville?");
         setTimeout(() => setCheck(""), 2000);
       } else {
         localStorage.setItem("ville", ville);
@@ -37,14 +36,14 @@ export default function Form({ err = "" }) {
         navigate(`/weather/${ville}`);
       }
     } else {
-      setErr("Erreur reseau ou probleme de connexion ⚠");
+      setErr("Erreur reseau ou probleme de connexion");
     }
   }
 
   function Forecast() {
     if (navigator.onLine) {
       if (!ville.trim()) {
-        setCheck("Ville⁉");
+        setCheck("Ville?");
         setTimeout(() => setCheck(""), 2000);
       } else {
         localStorage.setItem("ville", ville);
@@ -52,15 +51,13 @@ export default function Form({ err = "" }) {
         navigate(`/forecast/${ville}`);
       }
     } else {
-      setErr("Erreur reseau ou probleme de connexion ⚠");
+      setErr("Erreur reseau ou probleme de connexion");
     }
   }
   function Location() {
     if (navigator.onLine) {
       navigator.geolocation.getCurrentPosition(
         (position) => {
-          console.log(position.coords.latitude);
-          console.log(position.coords.longitude);
           navigate(
             `/weather/${position.coords.latitude}/${position.coords.longitude}`
           );
@@ -70,14 +67,14 @@ export default function Form({ err = "" }) {
         }
       );
     } else {
-      setErr("Erreur reseau ou probleme de connexion ⚠");
+      setErr("Erreur reseau ou probleme de connexion");
     }
   }
   function Map() {
     if (navigator.onLine) {
       navigate("/WeatherMap");
     } else {
-      setErr("Erreur reseau ou probleme de connexion ⚠");
+      setErr("Erreur reseau ou probleme de connexion");
     }
   }
   return (
@@ -88,7 +85,7 @@ export default function Form({ err = "" }) {
         onClick={(e) => e.stopPropagation()}
       >
         <h1>
-          Rechercher la meteo d'une ville <span>🌤️</span>
+          Rechercher la meteo d'une ville <span aria-hidden="true">☁</span>
           <input
             type="button"
             onClick={Location}

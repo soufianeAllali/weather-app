@@ -14,7 +14,7 @@ export default function ImagePage() {
   return (
     <div className="image-page-container">
       <button className="back-btn" onClick={back}>
-        ⬅ Retour
+        Retour
       </button>
 
       <div className="image-frame">

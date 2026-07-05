@@ -23,7 +23,7 @@ export default function Meteo_aujourdhui({ info, ville = "", Q = "", w }) {
 
       <div className="weather_parent">
         <div className="weather-card">
-          {ville && (
+          {ville && Q && (
             <button className="more-info-btn" onClick={navigatetocity}>
               Plus d'informations sur {ville}
             </button>
@@ -50,11 +50,11 @@ export default function Meteo_aujourdhui({ info, ville = "", Q = "", w }) {
           </div>
 
           <div className="extra-info">
-            <span>Humidité : {info.main.humidity}%</span>
+            <span>Humidite : {info.main.humidity}%</span>
             <span>Pression : {info.main.pressure} hPa</span>
           </div>
           <button className="changer-ville" onClick={back}>
-            Changer la ville 🌤️
+            Changer la ville
           </button>
         </div>
       </div>

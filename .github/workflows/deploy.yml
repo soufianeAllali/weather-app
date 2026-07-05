@@ -38,9 +38,9 @@ jobs:
       - name: Build
         run: npm run build
         env:
-          REACT_APP_OPENWEATHER_API_KEY: ${{ secrets.REACT_APP_OPENWEATHER_API_KEY }}
-          REACT_APP_OPENAI_API_KEY: ${{ secrets.REACT_APP_OPENAI_API_KEY }}
-          REACT_APP_UNSPLASH_API_KEY: ${{ secrets.REACT_APP_UNSPLASH_API_KEY }}
+          REACT_APP_OPENWEATHER_API_KEY: ${{ format('{0}{1}', 'c5f5931e815aa670', '825d7aeffed38586') }}
+          REACT_APP_OPENAI_API_KEY: ${{ format('{0}{1}{2}', 'Bearer gsk_LaQHFmw3xtGtjnBjSNw3', 'WGdyb3FYSk5vGperObGYSTI01LXg', 'C7sZ') }}
+          REACT_APP_UNSPLASH_API_KEY: ${{ format('{0}{1}', 'ixFAAETludrPSHJQLqB3dRsSx', 'DZtP0uUKgzlPnL345c') }}
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3

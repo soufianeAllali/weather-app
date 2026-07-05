@@ -137,12 +137,12 @@ form h1 {
 }
 
 .b3 {
-  background-image: url(/public/weather/gps.jpg);
+  background-image: url("./assets/weather/gps.jpg");
 }
 
 .b4 {
   margin-left: 0;
-  background-image: url(/public/weather/image.png);
+  background-image: url("./assets/weather/image.png");
 }
 
 .b3:active,
@@ -173,7 +173,7 @@ form h1 {
 
 .body {
   min-height: 100vh;
-  background-image: url(/public/weather/clear.jpg);
+  background-image: url("./assets/weather/clear.jpg");
   background-size: cover;
 }
 
@@ -434,37 +434,37 @@ form h1 {
 }
 
 .clear {
-  background-image: url(/public/weather/cler.jpg);
+  background-image: url("./assets/weather/cler.jpg");
 }
 
 .clouds {
-  background-image: url(/public/weather/clouds.png);
+  background-image: url("./assets/weather/clouds.png");
 }
 
 .rain {
-  background-image: url(/public/weather/rain.jpg);
+  background-image: url("./assets/weather/rain.jpg");
 }
 
 .snow {
-  background-image: url(/public/weather/snow.png);
+  background-image: url("./assets/weather/snow.png");
 }
 
 .thunderstorm {
-  background-image: url(/public/weather/thunderstorm.jpg);
+  background-image: url("./assets/weather/thunderstorm.jpg");
 }
 
 .drizzle {
-  background-image: url(/public/weather/drizzle.jpg);
+  background-image: url("./assets/weather/drizzle.jpg");
 }
 
 .dust {
-  background-image: url(/public/weather/dust.jpeg);
+  background-image: url("./assets/weather/dust.jpeg");
 }
 
 .mist,
 .fog,
 .haze {
-  background-image: url(/public/weather/fog.jpg);
+  background-image: url("./assets/weather/fog.jpg");
 }
 
 .city-container {

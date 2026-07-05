@@ -21,9 +21,9 @@ export default function CityInfo() {
       )
       .then((r) => setInfowikipedia(r.data))
       .catch((e) => {
-        if (!e.response) setErr("Erreur réseau ou problème de connexion ⚠");
-        else if (e.response.status === 404) setErr("Ville introuvable ⚠");
-        else setErr("Problème API");
+        if (!e.response) setErr("Erreur reseau ou probleme de connexion");
+        else if (e.response.status === 404) setErr("Ville introuvable");
+        else setErr("Probleme API");
       });
 
     axios
@@ -32,9 +32,9 @@ export default function CityInfo() {
       )
       .then((r) => setImages(r.data.results))
       .catch((e) => {
-        if (!e.response) setErr("Erreur réseau ou problème de connexion ⚠");
-        else if (e.response.status === 404) setErr("Ville introuvable ⚠");
-        else setErr("Problème API");
+        if (!e.response) setErr("Erreur reseau ou probleme de connexion");
+        else if (e.response.status === 404) setErr("Ville introuvable");
+        else setErr("Probleme API");
       });
 
     axios
@@ -43,9 +43,9 @@ export default function CityInfo() {
       )
       .then((r) => setInfowikidata(r.data))
       .catch((e) => {
-        if (!e.response) setErr("Erreur réseau ou problème de connexion ⚠");
-        else if (e.response.status === 404) setErr("Ville introuvable ⚠");
-        else setErr("Problème API");
+        if (!e.response) setErr("Erreur reseau ou probleme de connexion");
+        else if (e.response.status === 404) setErr("Ville introuvable");
+        else setErr("Probleme API");
       });
   }, [ville, Q]);
 
@@ -89,7 +89,7 @@ export default function CityInfo() {
           </div>
         </div>
         <button className="back-btn" onClick={back}>
-          ⬅ Retour
+          Retour
         </button>
 
         <h2 className="images-title">Images :</h2>
@@ -121,7 +121,7 @@ export default function CityInfo() {
     return (
       <div className="loading">
         <div className="spinner"></div>
-        <p>Chargement des données...</p>
+        <p>Chargement des donnees...</p>
       </div>
     );
   }

@@ -1,25 +1,29 @@
 import "./Style.css";
 import { useNavigate } from "react-router-dom";
 
-export default function Forecast({ info, ville,Q }) {
+export default function Forecast({ info, ville, Q }) {
   const navigate = useNavigate();
-  console.log(info);
+
   function back() {
     localStorage.removeItem("ville");
     navigate("/");
   }
 
-  function navigatetocity(){
+  function navigateToCity() {
     navigate(`/CityInfo/${ville}/${Q}`);
   }
 
   return (
     <div className="forecast-container">
       <button className="changer-ville" onClick={back} style={{marginBottom:'10px'}}>
-        Changer la ville 🌤
+        Changer la ville
       </button>
 
-      <button className="more-info-btn" onClick={navigatetocity}>Plus d'informations sur {ville}</button>
+      {Q && (
+        <button className="more-info-btn" onClick={navigateToCity}>
+          Plus d'informations sur {ville}
+        </button>
+      )}
 
       <div className="cards-wrapper">
         {info.list

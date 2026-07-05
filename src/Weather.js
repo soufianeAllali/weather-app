@@ -1,15 +1,13 @@
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import MeteoAujourdhui from "./Meteo_aujourd'hui";
+import CurrentWeather from "./Meteo_aujourd'hui";
 import Forecast from "./Forecast";
 import Form from "./Form";
 import "./Style.css";
 
 export default function Weather({ env }) {
-  console.log(useParams);
   const { ville, lat, lon } = useParams();
-  console.log(ville);
   const [info, setInfo] = useState(null);
   const [err, setErr] = useState("");
   const [loading, setLoading] = useState(false);
@@ -37,7 +35,7 @@ export default function Weather({ env }) {
       .then((reponse) => {
 
         setInfo(reponse.data);
-        localStorage.setItem('info',reponse.data);
+        localStorage.setItem("info", JSON.stringify(reponse.data));
         setErr("");
         if (env === "weather") {
           document.body.className = "";
@@ -53,9 +51,9 @@ export default function Weather({ env }) {
         setInfo(null);
         localStorage.removeItem("ville");
         if (!e.response) {
-          setErr("Erreur reseau ou probleme de connexion ⚠");
+          setErr("Erreur reseau ou probleme de connexion");
         } else if (e.response.status === 404) {
-          setErr("Ville introuvable ⚠");
+          setErr("Ville introuvable");
         } else {
           setErr("Probleme API");
         }
@@ -64,20 +62,25 @@ export default function Weather({ env }) {
         setLoading(false);
       });
 
+    if (!ville) {
+      setQville(null);
+      return;
+    }
+
     axios
       .get(
         `https://www.wikidata.org/w/api.php?action=wbsearchentities&search=${ville}&language=fr&format=json&origin=*`
       )
       .then((r) => {
-        setQville(r.data.search[0].id);
+        setQville(r.data.search?.[0]?.id ?? null);
       })
       .catch((e) => {
         setInfo(null);
         localStorage.removeItem("ville");
         if (!e.response) {
-          setErr("Erreur reseau ou probleme de connexion ⚠");
+          setErr("Erreur reseau ou probleme de connexion");
         } else if (e.response.status === 404) {
-          setErr("Ville introuvable ⚠");
+          setErr("Ville introuvable");
         } else {
           setErr("Probleme API");
         }
@@ -88,9 +91,9 @@ export default function Weather({ env }) {
     return (
       <>
         <h2 className="chargement" style={{ textAlign: "center" }}>
-          💭
+          ...
         </h2>
-        <p className="charge">Chargement des données...</p>
+        <p className="charge">Chargement des donnees...</p>
       </>
     );
   }
@@ -98,8 +101,17 @@ export default function Weather({ env }) {
   if (env === "weather") {
     return (
       <>
-        {(lat && info) && <MeteoAujourdhui info={info} ville="" Q="" w={info.weather[0].main.toLowerCase()}/>}
-        {(ville && info) && <MeteoAujourdhui info={info} ville={ville} Q={Qville} w={info.weather[0].main.toLowerCase()}/>}
+        {lat && info && (
+          <CurrentWeather info={info} ville="" Q="" w={info.weather[0].main.toLowerCase()} />
+        )}
+        {ville && info && (
+          <CurrentWeather
+            info={info}
+            ville={ville}
+            Q={Qville}
+            w={info.weather[0].main.toLowerCase()}
+          />
+        )}
         {err &&  <Form err={err} />}
       </>
     );

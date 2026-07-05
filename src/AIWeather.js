@@ -13,14 +13,14 @@ export default function AIWeatherTips({ weatherData }) {
       setTips("");
 
       const aiPrompt = `
-Voici les données météo actuelles pour aujourd'hui:
+Voici les donnees meteo actuelles pour aujourd'hui:
 Ville: ${weatherData.name || "inconnue"}
-Température: ${weatherData.main.temp || "N/A"}°C
-Condition: ${weatherData.main.condition || "N/A"}
-Humidité: ${weatherData.main.humidity || "N/A"}%
-Vent: ${weatherData.main.wind || "N/A"} km/h
+Temperature: ${weatherData.main.temp || "N/A"}°C
+Condition: ${weatherData.weather?.[0]?.description || "N/A"}
+Humidite: ${weatherData.main.humidity || "N/A"}%
+Vent: ${weatherData.wind?.speed || "N/A"} km/h
 status ${weatherData.weather[0].main}
-Génère 3 conseils pratiques et utiles pour cette météo aujourd'hui. Réponds de manière concise et claire.
+Genere 3 conseils pratiques et utiles pour cette meteo aujourd'hui. Reponds de maniere concise et claire.
 `;
 
       try {
@@ -32,7 +32,7 @@ Génère 3 conseils pratiques et utiles pour cette météo aujourd'hui. Réponds
               {
                 role: "system",
                 content:
-                  "Vous êtes un assistant météo intelligent. Fournissez des conseils pratiques basés sur les données météo actuelles.",
+                  "Vous etes un assistant meteo intelligent. Fournissez des conseils pratiques bases sur les donnees meteo actuelles.",
               },
               { role: "user", content: aiPrompt },
             ],
@@ -52,7 +52,7 @@ Génère 3 conseils pratiques et utiles pour cette météo aujourd'hui. Réponds
         );
       } catch (error) {
         console.error("Error:", error);
-        setTips("Une erreur est survenue lors de la connexion à l'IA.");
+        setTips("Une erreur est survenue lors de la connexion a l'IA.");
       }
 
       setLoading(false);
