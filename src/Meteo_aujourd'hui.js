@@ -12,7 +12,7 @@ export default function Meteo_aujourdhui({ info, ville = "", Q = "", w }) {
   }
 
   function navigatetocity() {
-    navigate(`/CityInfo/${ville}/${Q}`);
+    navigate(`/CityInfo/${encodeURIComponent(ville)}/${Q}`);
   }
 
   return (

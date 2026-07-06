@@ -8,7 +8,9 @@ export default function CityInfo() {
   const [images, setImages] = useState([]);
   const [infowikidata, setInfowikidata] = useState(null);
   const [err, setErr] = useState("");
-  const { ville, Q } = useParams();
+  const params = useParams();
+  const ville = decodeURIComponent(params.ville);
+  const { Q } = params;
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -17,7 +19,9 @@ export default function CityInfo() {
 
     axios
       .get(
-        `https://en.wikipedia.org/w/api.php?action=query&format=json&prop=extracts|pageimages|categories|links|info|images|coordinates|pageprops|revisions&explaintext=1&piprop=original&redirects=1&titles=${ville}&origin=*`
+        `https://en.wikipedia.org/w/api.php?action=query&format=json&prop=extracts|pageimages|categories|links|info|images|coordinates|pageprops|revisions&explaintext=1&piprop=original&redirects=1&titles=${encodeURIComponent(
+          ville
+        )}&origin=*`
       )
       .then((r) => setInfowikipedia(r.data))
       .catch((e) => {
@@ -28,7 +32,9 @@ export default function CityInfo() {
 
     axios
       .get(
-        `https://api.unsplash.com/search/photos?query=${ville}&client_id=${process.env.REACT_APP_UNSPLASH_API_KEY}`
+        `https://api.unsplash.com/search/photos?query=${encodeURIComponent(
+          ville
+        )}&client_id=${process.env.REACT_APP_UNSPLASH_API_KEY}`
       )
       .then((r) => setImages(r.data.results))
       .catch((e) => {

@@ -8,11 +8,16 @@ export default function Form({ err = "" }) {
   const [check, setCheck] = useState("");
   const [eror, setErr] = useState(err);
   const navigate = useNavigate();
-  document.body.classList.add("body");
 
   useEffect(() => {
-    if (localStorage.getItem("ville")) {
-      navigate(`/weather/${localStorage.getItem("ville")}`);
+    document.body.className = "";
+    document.body.classList.add("body");
+  }, []);
+
+  useEffect(() => {
+    const savedCity = localStorage.getItem("ville");
+    if (savedCity) {
+      navigate(`/weather/${encodeURIComponent(savedCity)}`);
     }
   }, [navigate]);
 
@@ -31,9 +36,10 @@ export default function Form({ err = "" }) {
         setCheck("Ville?");
         setTimeout(() => setCheck(""), 2000);
       } else {
-        localStorage.setItem("ville", ville);
+        const city = ville.trim();
+        localStorage.setItem("ville", city);
         setCheck("");
-        navigate(`/weather/${ville}`);
+        navigate(`/weather/${encodeURIComponent(city)}`);
       }
     } else {
       setErr("Erreur reseau ou probleme de connexion");
@@ -46,9 +52,10 @@ export default function Form({ err = "" }) {
         setCheck("Ville?");
         setTimeout(() => setCheck(""), 2000);
       } else {
-        localStorage.setItem("ville", ville);
+        const city = ville.trim();
+        localStorage.setItem("ville", city);
         setCheck("");
-        navigate(`/forecast/${ville}`);
+        navigate(`/forecast/${encodeURIComponent(city)}`);
       }
     } else {
       setErr("Erreur reseau ou probleme de connexion");

@@ -10,7 +10,7 @@ export default function Forecast({ info, ville, Q }) {
   }
 
   function navigateToCity() {
-    navigate(`/CityInfo/${ville}/${Q}`);
+    navigate(`/CityInfo/${encodeURIComponent(ville)}/${Q}`);
   }
 
   return (

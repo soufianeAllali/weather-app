@@ -7,7 +7,9 @@ import Form from "./Form";
 import "./Style.css";
 
 export default function Weather({ env }) {
-  const { ville, lat, lon } = useParams();
+  const params = useParams();
+  const ville = params.ville ? decodeURIComponent(params.ville) : undefined;
+  const { lat, lon } = params;
   const [info, setInfo] = useState(null);
   const [err, setErr] = useState("");
   const [loading, setLoading] = useState(false);
@@ -23,7 +25,7 @@ export default function Weather({ env }) {
       params: {
         lat: lat,
         lon: lon,
-        q: ville,
+        q: ville || undefined,
         appid: `${process.env.REACT_APP_OPENWEATHER_API_KEY}`,
         units: "metric",
         lang: "fr",
@@ -69,7 +71,9 @@ export default function Weather({ env }) {
 
     axios
       .get(
-        `https://www.wikidata.org/w/api.php?action=wbsearchentities&search=${ville}&language=fr&format=json&origin=*`
+        `https://www.wikidata.org/w/api.php?action=wbsearchentities&search=${encodeURIComponent(
+          ville
+        )}&language=fr&format=json&origin=*`
       )
       .then((r) => {
         setQville(r.data.search?.[0]?.id ?? null);
